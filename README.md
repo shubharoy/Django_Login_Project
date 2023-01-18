@@ -1,6 +1,8 @@
 # Django_Login_Project
 Basic Login System By Django
 Project Tools : Django and Python
+Important Note: Please run this code (python manage.py runserver --insecure) mode.. 
+If you run without insecure mode, static files may not be load.
 
 Project Features (Version: 1.01) :
 1. A window will be visualized in a web browser.
