@@ -71,10 +71,11 @@ def requestLogin(request):
                 return render(request, "index.html")
 
         #Checking given login information By- Username Or Email 
-        user = authenticate(request, username = userName, password=passWord)
+        user = authenticate(request, username=userName, password=passWord)
+         
         if user is not None:
             login(request, user)
-            return redirect('/userindex')
+            #return redirect('/userindex')
         else:
             messages.error(request, 'Username or Passsword Not Match ')
             
@@ -95,7 +96,7 @@ def userindex(request):
     return render(request, "home_user.html", context)
 
 #User can change password by this function
-@login_required(login_url='loginapp:change-password')
+@login_required(login_url='loginapp:requestLogin')
 @csrf_exempt
 def changepassword(request):   
     if request.method == "POST":
