@@ -1,0 +1,46 @@
+<h1>Django Project - LOGIN SYSTEM</h1>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>LOGIN SYSTEM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" type ='text/css' href="{% static 'style.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="login-form-wrap">
+  <h2>User Home Page</h2>
+
+
+{% if messages %}
+<p class="messages">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</p>
+{% endif %}
+ 
+  <div class="box-align">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+    It has survived not only five centuries, but also the leap into electronic typesetting, 
+    remaining essentially unchanged
+  </div> 
+
+  <div id="create-account-wrap">
+    <p>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'loginapp:logout-user' %}">Logout</a>
+      {% endif %}
+    <p>
+
+  </div><!--create-account-wrap-->
+</div><!--login-form-wrap-->
+<!-- partial -->
+  
+</body>
+</html>

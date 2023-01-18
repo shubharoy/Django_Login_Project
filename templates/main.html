@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Django - Login System</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'adminpanel/materialdesignicons.min.css' %}">
+        <!-- Layout styles -->
+    <link rel="stylesheet" href="{% static 'adminpanel/style.css' %}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+  </head> 
+  <body>
+    <div class="container-scroller">      
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+          <a class="sidebar-brand brand-logo" href="{% url 'loginapp:userindex' %}"><img src="{% static 'images/logo.svg' %}" alt="logo" /></a>
+          <a class="sidebar-brand brand-logo-mini" href="{% url 'loginapp:userindex' %}"><img src="{% static 'images/logo-mini.svg' %}" alt="logo" /></a>
+        </div>
+        <ul class="nav">
+          <li class="nav-item profile">
+            <div class="profile-desc">
+              <div class="profile-pic">
+                <div class="count-indicator">
+                  <img class="img-xs rounded-circle " src="{% static 'images/face15.jpg' %}" alt="">
+                  <span class="count bg-success"></span>
+                </div>
+                <div class="profile-name">
+                  {% if request.user.is_authenticated %}
+                  <h5 class="mb-0 font-weight-normal">{{request.user.first_name}}</h5>
+                  <span>
+                    {% if request.user.is_superuser == 1  %} Super User
+                    {% else %} General User
+                    {% endif %}
+                  </span>
+                  {% endif %}
+                </div>
+              </div>
+              
+            </div>
+          </li>
+          
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{% url 'loginapp:userindex' %}">
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="{% url 'loginapp:userindex' %}"><img src="{% static 'images/logo-mini.svg' %}" alt="logo" /></a>
+          </div>
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+             
+            <ul class="navbar-nav navbar-nav-right">                            
+              <li class="nav-item dropdown">
+                <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
+                  <div class="navbar-profile">
+                    <img class="img-xs rounded-circle" src="{% static 'images/face15.jpg' %}" alt="">
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">
+                      {% if request.user.is_authenticated %}
+                        {{request.user.first_name}}
+                      {% endif %}
+                    </p>
+                     
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                  <a href="{% url 'loginapp:change-password' %}" class="dropdown-item preview-item">                   
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Change Password</p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="{% url 'loginapp:logout-user' %}" class="dropdown-item preview-item">
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Log out</p>
+                    </div>
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-format-line-spacing"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+
+            {% block content %}
+        
+        
+            {% endblock %}
+
+          </div>
+            
+      <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © SHUBHA ROY</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{% static 'adminpanel/vendor.bundle.base.js' %}"></script>    
+    <!-- Custom js for this page -->
+    <script src="{% static 'adminpanel/dashboard.js' %}"></script>
+    <!-- End custom js for this page -->
+  </body>
+</html>

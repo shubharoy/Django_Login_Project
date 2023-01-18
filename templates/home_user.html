@@ -1,0 +1,76 @@
+{% extends 'main.html' %} 
+
+{% block content %}
+{% load static %}
+   
+    <div class="row ">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="mb-4">Welcome</h3>
+                    <p>Hello, I am Shubha Roy and this is my first Django Project. This is a beginner project where I made a <cite class="text-info">"Login System"</cite> and
+                        some related features. Two months ago I have started learning Python from DevSkill which is one of the best Online Learning Platform 
+                        in Bangladesh.
+                    </p>
+                    <p>
+                        I am interested in building websites and developing software. This basic <cite class="text-info">"Login System"</cite> project I developed as the final project for that course.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">About Project</h4>
+              <p class="card-description"><code>Tools and Features</code></p>
+              <ul class="list-ticked">
+                <li>Used Tools : Python, Django, SQLite </li>
+                <li>Login with username & password</li>
+                <li>Send new password through Email</li>
+                <li>Get user list and show in a table</li>
+                <li>User can Change Password</li>
+                <li>User can Logout</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">User List</h4>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>                            
+                    <th> Sl No. </th>
+                    <th> First Name </th>
+                    <th> Email Address </th>
+                    <th> User Status </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for UserList in GetUserList %}                        
+                        <tr>                            
+                            <td> {{ forloop.counter }} </td>
+                            <td> <span class="ps-2">{{ UserList.first_name }} {{ UserList.last_name }}</span> </td>
+                            <td> {{ UserList.email }} </td>
+                            <td> 
+                                {% if UserList.is_superuser == 1  %} <div class="badge badge-outline-success">Super User</div>
+                                {% else %} <div class="badge badge-outline-primary">General User</div>
+                                {% endif %}
+                            </td>
+                             
+                        </tr>
+
+                    {% endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+  
+
+  {% endblock %}
