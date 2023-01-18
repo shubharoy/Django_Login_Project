@@ -14,6 +14,7 @@ def home(request):
     return render(request, "index.html")
 
 #Forgot Password Page & Send New Password by email
+@csrf_exempt
 def ForgotPassword(request):    
     if request.method == "POST":      
         user_email = request.POST.get('useremail')  
